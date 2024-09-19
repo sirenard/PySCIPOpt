@@ -1827,6 +1827,15 @@ cdef class Model:
             var_dict[var.name] = self.getVal(var)
         return var_dict
 
+    def getVarPseudocostScore(self, Variable var, solVal):
+        """
+        gets the variable's pseudo cost score value for the given LP solution value
+
+        :param var: Variable
+        :param solVal: variable's LP solution value
+        """
+        return SCIPgetVarPseudocostScore(self._scip, var.scip_var, solVal)
+
     def updateNodeLowerbound(self, Node node, lb):
         """if given value is larger than the node's lower bound (in transformed problem),
         sets the node's lower bound to the new value

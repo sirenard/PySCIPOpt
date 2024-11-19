@@ -1290,6 +1290,11 @@ cdef extern from "scip/scip.h":
     SCIP_Bool SCIPisNegative(SCIP *scip, SCIP_Real val)
     SCIP_Bool SCIPisIntegral(SCIP *scip, SCIP_Real val)
     SCIP_Real SCIPgetTreesizeEstimation(SCIP *scip)
+    SCIP_Real SCIPgetVarPseudocostCountCurrentRun (SCIP *scip, SCIP_VAR *var, SCIP_BRANCHDIR dir)
+    SCIP_Real SCIPgetNDualResolveLPIterations(SCIP *scip)
+    SCIP_Real SCIPgetNDualResolveLPs(SCIP *scip)
+    SCIP_Real SCIPgetNNodeInitLPIterations(SCIP *scip)
+    SCIP_Real SCIPgetNNodeInitLPs(SCIP *scip)
 
     # Statistic Methods
     SCIP_RETCODE SCIPprintStatistics(SCIP* scip, FILE* outfile)

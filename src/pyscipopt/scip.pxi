@@ -1187,6 +1187,18 @@ cdef class Model:
         """Retrieve the total number of LP iterations so far."""
         return SCIPgetNLPIterations(self._scip)
 
+    def getNDualResolveLPIterations(self):
+        return SCIPgetNDualResolveLPIterations(self._scip)
+
+    def getNDualResolveLPs(self):
+        return SCIPgetNDualResolveLPs(self._scip)
+
+    def getNNodeInitLPIterations(self):
+        return SCIPgetNNodeInitLPIterations(self._scip)
+
+    def getNNodeInitLPs(self):
+        return SCIPgetNNodeInitLPs(self._scip)
+
     def getNNodes(self):
         """gets number of processed nodes in current run, including the focus node."""
         return SCIPgetNNodes(self._scip)
@@ -5589,6 +5601,20 @@ cdef class Model:
          """
 
         PY_SCIP_CALL(SCIPupdateVarPseudocost(self._scip, var.scip_var, valdelta, objdelta, weight))
+
+    def getVarPseudocostCountCurrentRun(self, Variable var, down):
+        """
+        gets the variable's (possible fractional) number of pseudo cost updates for the given direction, only using the pseudo cost information of the current run
+
+        :param Variable: variable to get the count for
+        :param down: ff the branching direction is down
+        """
+        cdef int direction;
+        if down:
+            direction = SCIP_BRANCHDIR_DOWNWARDS
+        else:
+            direction = SCIP_BRANCHDIR_DOWNWARDS
+        return SCIPgetVarPseudocostCountCurrentRun(self._scip, var.scip_var, direction)
 
     def getBranchScoreMultiple(self, Variable var, gains):
         """Calculates the branching score out of the gain predictions for a branching with

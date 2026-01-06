@@ -4859,6 +4859,130 @@ cdef class Model:
         """
         return SCIPgetVarPseudocost(self._scip, var.scip_var, branchdir)
 
+    def getVarVSIDS(self, Variable var, branchdir):
+        """
+        returns the variable's VSIDS value
+
+        Parameters
+        ----------
+        variable : Variable
+            problem variable
+        branchdir : PY_SCIP_BRANCHDIR
+            branching direction (downwards, or upwards)
+
+        Returns
+        -------
+        float
+        """
+        return SCIPgetVarVSIDS(self._scip, var.scip_var, branchdir)
+
+    def getVarVSIDSCurrentRun(self, Variable var, branchdir):
+        """
+        returns the variable's VSIDS value only using conflicts of the current run
+
+        Parameters
+        ----------
+        variable : Variable
+            problem variable
+        branchdir : PY_SCIP_BRANCHDIR
+            branching direction (downwards, or upwards)
+
+        Returns
+        -------
+        float
+        """
+        return SCIPgetVarVSIDSCurrentRun(self._scip, var.scip_var, branchdir)
+
+    def getVarConflictScore(self, Variable var):
+        """
+        returns the variable's conflict score value
+
+        Parameters
+        ----------
+        variable : Variable
+            problem variable
+
+        Returns
+        -------
+        float
+        """
+        return SCIPgetVarConflictScore(self._scip, var.scip_var)
+
+    def getVarConflictScoreCurrentRun(self, Variable var):
+        """
+        returns the variable's conflict score value only using conflicts of the current run
+
+        Parameters
+        ----------
+        variable : Variable
+            problem variable
+
+        Returns
+        -------
+        float
+        """
+        return SCIPgetVarConflictScoreCurrentRun(self._scip, var.scip_var)
+
+    def getVarConflictlengthScore(self, Variable var):
+        """
+        returns the variable's average conflict length
+
+        Parameters
+        ----------
+        variable : Variable
+            problem variable
+
+        Returns
+        -------
+        float
+        """
+        return SCIPgetVarConflictlengthScore(self._scip, var.scip_var)
+
+    def getVarConflictlengthScoreCurrentRun(self, Variable var):
+        """
+        returns the variable's average conflict length only using conflicts of the current run
+
+        Parameters
+        ----------
+        variable : Variable
+            problem variable
+
+        Returns
+        -------
+        float
+        """
+        return SCIPgetVarConflictlengthScoreCurrentRun(self._scip, var.scip_var)
+
+    def getVarAvgInferenceScore(self, Variable var):
+        """
+        returns the variable's average inference score value
+
+        Parameters
+        ----------
+        variable : Variable
+            problem variable
+
+        Returns
+        -------
+        float
+        """
+        return SCIPgetVarAvgInferenceScore(self._scip, var.scip_var)
+
+    def getVarAvgInferenceScoreCurrentRun(self, Variable var):
+        """
+        returns the variable's average inference score value
+
+        Parameters
+        ----------
+        variable : Variable
+            problem variable
+
+        Returns
+        -------
+        float
+        """
+        return SCIPgetVarAvgInferenceScoreCurrentRun(self._scip, var.scip_var)
+
     def updateNodeLowerbound(self, Node node, lb):
         """
         If given value is larger than the node's lower bound (in transformed problem),
